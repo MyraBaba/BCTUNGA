@@ -143,7 +143,8 @@
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      // 1.5 üstü DPR'de piksel maliyeti hızla büyüyor; görsel fark yok denecek kadar az
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const prevW = width;
       const prevH = height;
       width = Math.max(rect.width, 1);
@@ -155,7 +156,7 @@
       // Dar ekranda akış hattı metin bloğunun/CTA'nın altına insin
       streamY = height * (width < 700 ? 0.62 : 0.46);
 
-      const target = Math.max(90, Math.min(230, Math.round(width / 7)));
+      const target = Math.max(70, Math.min(150, Math.round(width / 10)));
 
       if (particles.length === 0 || !prevW || !prevH) {
         particles = Array.from({ length: target }, () => spawn({}, true));

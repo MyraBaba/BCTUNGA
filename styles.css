@@ -39,11 +39,12 @@ body {
   font-family: var(--font-body);
   font-weight: 400;
   color: var(--ink);
+  /* background-attachment: fixed kullanma — Safari'de her kaydırmada
+     tüm degradeyi yeniden boyatıp sayfayı yavaşlatıyor */
   background:
     radial-gradient(90vw 70vh at 85% -10%, rgba(63, 208, 245, 0.07), transparent 60%),
     radial-gradient(70vw 60vh at -10% 20%, rgba(255, 59, 92, 0.055), transparent 55%),
     linear-gradient(165deg, var(--bg-0), var(--bg-1) 55%, var(--bg-0));
-  background-attachment: fixed;
   min-height: 100vh;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -98,16 +99,6 @@ a {
 
 #home:focus {
   outline: none;
-}
-
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
 }
 
 /* ---------- scroll progress ---------- */
@@ -427,8 +418,6 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 14px;
   overflow: hidden;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   box-shadow: var(--shadow);
 }
 
@@ -589,6 +578,15 @@ h3 {
   height: 16px;
   border-color: var(--red);
   box-shadow: 0 0 0 6px rgba(255, 59, 92, 0.14), 0 0 24px rgba(255, 59, 92, 0.35);
+}
+
+/* Nabız: box-shadow yerine compositor dostu transform/opacity animasyonu */
+.flow-node.n2::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 59, 92, 0.5);
   animation: gateway-pulse 2.6s ease-in-out infinite;
 }
 
@@ -639,8 +637,14 @@ h3 {
 }
 
 @keyframes gateway-pulse {
-  0%, 100% { box-shadow: 0 0 0 6px rgba(255, 59, 92, 0.14), 0 0 24px rgba(255, 59, 92, 0.35); }
-  50% { box-shadow: 0 0 0 10px rgba(255, 59, 92, 0.08), 0 0 34px rgba(255, 59, 92, 0.5); }
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
 }
 
 .flow-panels {
