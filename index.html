@@ -3,21 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BCTUNGA v2 | Ödün Vermeyen Veri Aktarım Protokolü</title>
-  <meta name="description" content="BCTUNGA: Yüksek performanslı, güvenli ve verimli veri aktarım protokolü. 6M+ olay/saniye, Curve25519 ve 16x ağ tasarrufu.">
-  <meta name="theme-color" content="#020a1d">
+  <title>BCTUNGA | Ödün Vermeyen Veri Aktarım Protokolü</title>
+  <meta name="description" content="BCTUNGA: Yüksek performanslı, güvenli ve verimli veri aktarım protokolü. 60M+ olay/saniye, Curve25519 ve 16x ağ tasarrufu.">
+  <meta name="theme-color" content="#060b16">
+  <meta property="og:title" content="BCTUNGA | Ödün Vermeyen Veri Aktarım Protokolü">
+  <meta property="og:description" content="Hız. Güvenlik. Verimlilik. Ödün vermeden. 60M+ olay/saniye, Curve25519, 16x ağ tasarrufu.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bctunga.com/">
+  <meta property="og:image" content="https://bctunga.com/assets/red-elephant-logo.png">
+  <link rel="icon" type="image/png" href="assets/red-elephant-mark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="noise-layer" aria-hidden="true"></div>
+  <a class="skip-link" href="#home">İçeriğe geç</a>
+  <div class="scroll-progress" aria-hidden="true"><i id="scroll-bar"></i></div>
+  <div class="grain" aria-hidden="true"></div>
+
   <header class="site-header">
     <div class="container header-inner">
       <a href="#home" class="brand" aria-label="BCTUNGA ana sayfa">
         <span class="brand-mark" aria-hidden="true">
-          <img src="assets/red-elephant-logo.png" alt="" width="420" height="420" fetchpriority="high" decoding="async">
+          <img src="assets/red-elephant-mark.png" alt="" width="225" height="225" fetchpriority="high" decoding="async">
         </span>
         <span class="brand-copy">
           <strong>BCTUNGA</strong>
@@ -27,173 +36,240 @@
       <nav class="top-nav" aria-label="Bölüm bağlantıları">
         <a href="#services">Özellikler</a>
         <a href="#architecture">Mimari</a>
-        <a href="#contact">PoC</a>
+        <a href="#benchmark">Testler</a>
       </nav>
+      <a class="btn btn-primary btn-header" href="#contact">PoC Başlat</a>
     </div>
   </header>
 
   <main>
-    <section id="home" class="section hero container">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">BCTUNGA PROTOCOL V2</p>
-        <h1>Ödün vermeyen <span>hız, güvenlik ve verimlilik.</span></h1>
-        <p class="lead">
-          BCTUNGA, yüksek performanslı güvenli veri aktarımı için tasarlandı.
-          Ağ trafiğini düşürürken veri bütünlüğünü korur, yoğun yük altında dahi hızını sürdürür.
-        </p>
-        <div class="chip-row">
-          <span>60 Milyon+ Olay/Saniye</span>
-          <span>Curve25519</span>
-          <span>16x Ağ Tasarrufu</span>
-          <span>Zero Trust</span>
-          <span>100.000+ Client</span>
-          <span>10M+ Ölçeklenme</span>
-        </div>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">PoC Başlat</a>
-          <a class="btn btn-ghost" href="#architecture">Mimariyi İncele</a>
+    <!-- ============ HERO ============ -->
+    <section id="home" class="hero" tabindex="-1">
+      <canvas id="pipeline" aria-hidden="true"></canvas>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="tick" aria-hidden="true"></span>BCTUNGA PROTOKOL V2</p>
+          <h1>
+            Hız. Güvenlik. Verimlilik.
+            <span class="h1-accent">Ödün vermeden.</span>
+          </h1>
+          <p class="lead">
+            BCTUNGA, yüksek performanslı güvenli veri aktarımı için tasarlandı.
+            Ağ trafiğini düşürürken veri bütünlüğünü korur; yoğun yük altında dahi hızını sürdürür.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">PoC Başlat</a>
+            <a class="btn btn-ghost" href="#architecture">Mimariyi İncele</a>
+          </div>
+          <p class="hero-note">Ham veri şifrelenir, sıkıştırılır ve tek bir yüksek hızlı hatta akar &mdash; arka plandaki akış canlı bir simülasyondur.</p>
         </div>
       </div>
 
-      <aside class="hero-visual reveal" aria-label="Teknoloji görseli">
-        <div class="core-orb">
-          <span class="ring ring-1" aria-hidden="true"></span>
-          <span class="ring ring-2" aria-hidden="true"></span>
-          <span class="ring ring-3" aria-hidden="true"></span>
-          <span class="pulse" aria-hidden="true"></span>
-        </div>
-        <div class="metrics">
-          <article class="metric-card">
-            <p class="metric-value"><span data-count="60">0</span>M+</p>
-            <p class="metric-label">Olay/Saniye işlem kapasitesi</p>
-          </article>
-          <article class="metric-card">
-            <p class="metric-value"><span data-count="16">0</span>x</p>
-            <p class="metric-label">Daha az bant genişliği kullanımı</p>
-          </article>
-          <article class="metric-card">
-            <p class="metric-value">&lt;<span data-count="100">0</span>Mbps</p>
-            <p class="metric-label">1.5Gbps eşdeğeri trafik taşıma</p>
-          </article>
-        </div>
-      </aside>
-    </section>
-
-    <section class="streamline">
-      <div class="streamline-track">
-        <span>HIZ</span>
-        <span>GÜVENLİK</span>
-        <span>VERİMLİLİK</span>
-        <span>CURVE25519</span>
-        <span>ZERO TRUST</span>
-        <span>ÖZEL SIKIŞTIRMA</span>
-        <span>IO_THREADS</span>
-        <span>LINEER ÖLÇEKLENME</span>
-        <span>100.000+ CLIENT</span>
-        <span>BCTUNGA PROXY</span>
+      <!-- Paket başlığı biçiminde metrik şeridi -->
+      <div class="container">
+        <dl class="packet-strip" aria-label="Temel performans metrikleri">
+          <div class="pf">
+            <dt>AKTARIM</dt>
+            <dd><span class="num" data-count="60">60</span>M+ <small>olay/sn</small></dd>
+          </div>
+          <div class="pf">
+            <dt>ŞİFRELEME</dt>
+            <dd>Curve25519</dd>
+          </div>
+          <div class="pf">
+            <dt>SIKIŞTIRMA</dt>
+            <dd><span class="num" data-count="16">16</span>x <small>ağ tasarrufu</small></dd>
+          </div>
+          <div class="pf">
+            <dt>İSTEMCİ</dt>
+            <dd>100.000+ <small>eşzamanlı</small></dd>
+          </div>
+          <div class="pf">
+            <dt>ÖLÇEK</dt>
+            <dd>10M+ <small>ölçeklenme</small></dd>
+          </div>
+        </dl>
       </div>
     </section>
 
+    <!-- ============ ÖZELLİKLER ============ -->
     <section id="services" class="section container">
       <div class="section-head reveal">
-        <p class="eyebrow">ÇEKİRDEK ÖZELLİKLER</p>
-        <h2>Günümüz veri dünyasının zor üçlemini tek protokolde çözer.</h2>
+        <p class="eyebrow"><span class="tick" aria-hidden="true"></span>ÇEKİRDEK ÖZELLİKLER</p>
+        <h2>Hız, güvenlik ve verimlilik:<br>zorlu üçlem tek protokolde çözülür.</h2>
       </div>
-      <div class="service-grid">
-        <article class="service-card reveal">
-          <h3>Hız</h3>
+
+      <div class="pillar-grid">
+        <article class="pillar reveal">
+          <p class="field-tag">HIZ</p>
+          <h3>Yük altında bile tam gaz</h3>
           <p>100.000 eşzamanlı istemci yükünde dahi 60 milyon+ olay/saniye seviyesinde performans sunar.</p>
         </article>
-        <article class="service-card reveal">
-          <h3>Güvenlik</h3>
-          <p>Curve25519 şifreleme ve sıfır güven yaklaşımıyla gönderen-alıcı doğrulaması sağlar.</p>
+        <article class="pillar reveal">
+          <p class="field-tag">GÜVENLİK</p>
+          <h3>Askeri düzeyde şifreleme</h3>
+          <p>Curve25519 tabanlı şifreleme ve sıfır güven (Zero Trust) yaklaşımıyla gönderen-alıcı doğrulaması sağlar.</p>
         </article>
-        <article class="service-card reveal">
-          <h3>Verimlilik</h3>
-          <p>Özel sıkıştırma mekanizmasıyla 66KB ham veriyi 4KB paketlere kadar düşürebilir.</p>
+        <article class="pillar reveal">
+          <p class="field-tag">VERİMLİLİK</p>
+          <h3>16 kat daha az trafik</h3>
+          <p>Özel sıkıştırma mekanizmasıyla 66 KB ham veriyi 4 KB paketlere kadar düşürebilir.</p>
         </article>
-        <article class="service-card reveal">
-          <h3>Zırhlı Kurye Felsefesi</h3>
+      </div>
+
+      <div class="minor-grid">
+        <article class="minor reveal">
+          <p class="field-tag">ZIRHLI KURYE FELSEFESİ</p>
           <p>İçerik gizliliği, kimlik doğrulama ve bütünlük kontrolü aynı akışta bir arada ilerler.</p>
         </article>
-        <article class="service-card reveal">
-          <h3>Düşük Kaynak Kullanımı</h3>
-          <p>7 milyon olay/saniye yükünde yaklaşık 3.1 çekirdek ve 95MB RAM ile stabil çalışır.</p>
+        <article class="minor reveal">
+          <p class="field-tag">DÜŞÜK KAYNAK KULLANIMI</p>
+          <p>7 milyon olay/saniye yükünde yaklaşık 3,1 çekirdek ve 95 MB RAM ile stabil çalışır.</p>
         </article>
-        <article class="service-card reveal">
-          <h3>Lineer Ölçeklenme</h3>
-          <p>Multithreaded <code>IO_THREADS</code> mimarisiyle çekirdek artışıyla doğrusal büyür.</p>
+        <article class="minor reveal">
+          <p class="field-tag">DOĞRUSAL ÖLÇEKLENME</p>
+          <p>Çok iş parçacıklı <code>IO_THREADS</code> mimarisi, çekirdek sayısıyla birlikte doğrusal ölçeklenme sağlar.</p>
         </article>
       </div>
     </section>
 
-    <section id="architecture" class="section container stack-section">
+    <!-- ============ MİMARİ ============ -->
+    <section id="architecture" class="section container">
       <div class="section-head reveal">
-        <p class="eyebrow">MİMARİ AKIŞ</p>
-        <h2>Uç noktadan merkeze güvenli ve yüksek hızlı veri hattı.</h2>
+        <p class="eyebrow"><span class="tick" aria-hidden="true"></span>MİMARİ AKIŞ</p>
+        <h2>Uç noktadan merkeze,<br>güvenli ve yüksek hızlı veri hattı.</h2>
       </div>
-      <div class="stack-panels">
-        <article class="panel reveal">
-          <h3>Uç Noktalar</h3>
-          <ul>
-            <li>100.000+ istemciden eşzamanlı akış</li>
-            <li>Veri istemci tarafında hazırlanır</li>
-            <li>Şifreli ve sıkıştırılmış paket gönderimi</li>
-          </ul>
+
+      <div class="flow reveal">
+        <div class="flow-track" aria-hidden="true">
+          <i class="flow-line"></i>
+          <i class="flow-node n1"></i>
+          <i class="flow-node n2"></i>
+          <i class="flow-node n3"></i>
+          <i class="flow-packet p1"></i>
+          <i class="flow-packet p2"></i>
+          <i class="flow-packet p3"></i>
+        </div>
+        <div class="flow-panels">
+          <article class="panel">
+            <p class="field-tag">01 &middot; KAYNAK</p>
+            <h3>Uç Noktalar</h3>
+            <ul>
+              <li>100.000+ istemciden eşzamanlı akış</li>
+              <li>Veri istemci tarafında hazırlanır</li>
+              <li>Şifreli ve sıkıştırılmış paket gönderimi</li>
+            </ul>
+          </article>
+          <article class="panel is-gateway">
+            <p class="field-tag">02 &middot; GEÇİT</p>
+            <h3>BCTUNGA Güvenli Ağ Geçidi</h3>
+            <ul>
+              <li>BCTUNGA Proxy ile doğrulama ve geçiş</li>
+              <li>Curve25519 tabanlı askeri düzeyde şifreleme</li>
+              <li>Sahte IP ve yetkisiz cihazlara karşı koruma</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <p class="field-tag">03 &middot; MERKEZ</p>
+            <h3>Veri İşleme Merkezi</h3>
+            <ul>
+              <li>BCTUNGA Sink ile güvenli alım</li>
+              <li>Yüksek hacimli veri işleme altyapısı</li>
+              <li>Düşük ağ maliyeti, yüksek sürdürülebilirlik</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TEST SONUÇLARI ============ -->
+    <section id="benchmark" class="section container">
+      <div class="section-head reveal">
+        <p class="eyebrow"><span class="tick" aria-hidden="true"></span>STRES TESTİ</p>
+        <h2>Yük altında ölçülmüş,<br>kanıtlanmış performans.</h2>
+      </div>
+
+      <div class="stat-grid">
+        <article class="stat reveal">
+          <p class="stat-value"><span class="num" data-count="6.7" data-decimals="1">6,7</span>M</p>
+          <p class="stat-label">olay/sn &middot; 1.000 istemci</p>
         </article>
-        <article class="panel reveal">
-          <h3>BCTUNGA Güvenli Ağ Geçidi</h3>
-          <ul>
-            <li>BCTUNGA Proxy ile doğrulama ve geçiş</li>
-            <li>Curve25519 ile askeri düzeyde şifreleme</li>
-            <li>Sahte IP ve yetkisiz cihazlara karşı koruma</li>
-          </ul>
+        <article class="stat reveal">
+          <p class="stat-value"><span class="num" data-count="6.0" data-decimals="1">6,0</span>M</p>
+          <p class="stat-label">olay/sn &middot; 10.000 istemci</p>
         </article>
-        <article class="panel reveal">
-          <h3>Veri İşleme Merkezi</h3>
-          <ul>
-            <li>BCTUNGA Sink ile güvenli alım</li>
-            <li>Yüksek hacimli veri işleme altyapısı</li>
-            <li>Düşük ağ maliyeti, yüksek sürdürülebilirlik</li>
-          </ul>
+        <article class="stat reveal">
+          <p class="stat-value">~%<span class="num" data-count="25">25</span></p>
+          <p class="stat-label">üst düzey güvenlik katmanının toplam performans maliyeti</p>
+        </article>
+        <article class="stat reveal">
+          <p class="stat-value"><span class="num" data-count="3.1" data-decimals="1">3,1</span></p>
+          <p class="stat-label">çekirdek ve 95 MB RAM &middot; 7M olay/sn yükünde</p>
         </article>
       </div>
-      <div class="proof-grid">
-        <article class="proof-card reveal">
-          <h3>Stres Testi Özeti</h3>
-          <p><strong>1.000 client:</strong> 6.7M olay/saniye</p>
-          <p><strong>10.000 client:</strong> 6.0M olay/saniye</p>
-          <p>Üst düzey güvenlik katmanı performanstan yalnızca ~%25 ödün verir.</p>
-        </article>
-        <article class="proof-card reveal">
-          <h3>Ağ Kazancı</h3>
-          <p><strong>Normal trafik:</strong> 1.5 Gbps</p>
-          <p><strong>BCTUNGA ile:</strong> 100 Mbps altı</p>
-          <p>Operasyonel maliyeti düşüren 16x seviyesinde bant verimliliği sağlar.</p>
-        </article>
+
+      <div class="bench-grid">
+        <figure class="bench reveal">
+          <figcaption>
+            <h3>Ağ bant genişliği</h3>
+            <p>1,5 Gbps eşdeğeri trafik, BCTUNGA hattında 100 Mbps'in altına iner.</p>
+          </figcaption>
+          <div class="meter-row">
+            <span class="meter-name">Standart trafik</span>
+            <div class="meter"><i class="fill-raw w-full"></i></div>
+            <span class="meter-val">1,5 Gbps</span>
+          </div>
+          <div class="meter-row">
+            <span class="meter-name">BCTUNGA</span>
+            <div class="meter"><i class="fill-tunga w-7"></i></div>
+            <span class="meter-val">&lt;100 Mbps</span>
+          </div>
+          <p class="bench-note"><strong>16x</strong> bant genişliği tasarrufu</p>
+        </figure>
+
+        <figure class="bench reveal">
+          <figcaption>
+            <h3>Paket boyutu</h3>
+            <p>Özel sıkıştırma, 66 KB ham veriyi 4 KB BCTUNGA paketine kadar düşürebilir.</p>
+          </figcaption>
+          <div class="meter-row">
+            <span class="meter-name">Ham veri</span>
+            <div class="meter"><i class="fill-raw w-full"></i></div>
+            <span class="meter-val">66 KB</span>
+          </div>
+          <div class="meter-row">
+            <span class="meter-name">BCTUNGA paketi</span>
+            <div class="meter"><i class="fill-tunga w-6"></i></div>
+            <span class="meter-val">4 KB</span>
+          </div>
+          <p class="bench-note"><strong>~%94</strong> boyut azalması</p>
+        </figure>
       </div>
+
       <p class="architecture-note reveal">
-        Sonuç: Hız, güvenlik ve verimlilik mükemmel dengede. BCTUNGA, kurumların veri aktarım katmanını
-        ödünsüz şekilde modernize eder.
+        Sonuç: Hız, güvenlik ve verimlilik mükemmel dengede. BCTUNGA, kurumların veri aktarım
+        katmanını ödünsüz şekilde modernize eder.
       </p>
     </section>
 
+    <!-- ============ İLETİŞİM ============ -->
     <section id="contact" class="section container">
       <div class="contact-card reveal">
         <div>
-          <p class="eyebrow">PoC BAŞLANGIÇ</p>
+          <p class="eyebrow"><span class="tick" aria-hidden="true"></span>PoC BAŞLANGICI</p>
           <h2>BCTUNGA v2 için canlı PoC planlayalım.</h2>
-          <p>Mimarini birlikte değerlendirip hız, güvenlik ve verimlilik kazanımını gerçek verilerle ölçelim.</p>
+          <p>Mimarinizi birlikte değerlendirip hız, güvenlik ve verimlilik kazanımını gerçek verilerle ölçelim.</p>
         </div>
-        <a class="btn btn-primary" href="mailto:support@bctunga.com">support@bctunga.com</a>
+        <a class="btn btn-primary btn-lg" href="mailto:support@bctunga.com">support@bctunga.com</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p><strong>BCTUNGA</strong> <span>•</span> Yüksek Performanslı Güvenli Veri Aktarım - Veri İşleme Teknolojileri 2026  B.C. </p>
-      <p class="muted">© 2026</p>
+      <p><strong>BCTUNGA</strong> <span aria-hidden="true">&bull;</span> Yüksek Performanslı Güvenli Veri Aktarımı ve Veri İşleme Teknolojileri &mdash; B.C. Tunga</p>
+      <p class="muted">&copy; 2026</p>
     </div>
   </footer>
 
